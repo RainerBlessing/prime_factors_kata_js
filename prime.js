@@ -15,16 +15,17 @@ module.exports = function prime(n, p) {
     if (n >= 2) {
         if (typeof p === 'undefined') p = 2;
         if (n == p)
-            return [n];
-        do {
-            if (n % p === 0) {
-                n = n / p;
-                primes.push(p);
+            primes.push(n);
+        else
+            do {
+                if (n % p === 0) {
+                    n = n / p;
+                    primes.push(p);
+                } else {
+                    ++p;
+                }
                 primes.extend(prime(n, p));
-            } else {
-                primes.extend(prime(n, ++p));
-            }
-        } while (!compare(prime(n, p), [n]))
+            } while (!compare(prime(n, p), [n]))
     }
     return primes;
 };
